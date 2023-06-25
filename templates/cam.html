@@ -35,15 +35,18 @@
             fetch(apiLink)
                 .then(response => response.json())
                 .then(data => {
-                    if (data) {
+                    if (data.status == true) {
                         document.body.style.backgroundColor = "green"
                         document.getElementById("camStatus").innerHTML = "Live"
-                    } else {
+                    } else if (data.status == false) {
                         document.body.style.backgroundColor = "red"
                         document.getElementById("camStatus").innerHTML = "Offline"
+                    } else {
+                        document.body.style.backgroundColor = "black"
+                        document.getElementById("camStatus").innerHTML = "Error"
                     }
                 })
-        } catch {
+        } catch (error) {
             console.log(error)
             document.body.style.backgroundColor = "black"
             document.getElementById("camStatus").innerHTML = "Error"

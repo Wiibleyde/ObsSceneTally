@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, json
+from flask import Flask, render_template, request, json
 import flask.cli
 import logging
 
@@ -16,7 +16,7 @@ def getCamStatus():
     # print("Call to /getCamStatus received with camId=" + request.args.get('camId'))
     camId = request.args.get('camId')
     # json response
-    return json.dumps(camServiceObj.get(camId))
+    return {'status': camServiceObj.get(camId)}
 
 @app.route('/setCamVisible', methods=['GET'])
 def setCamVisible():
