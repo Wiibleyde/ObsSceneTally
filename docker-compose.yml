@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image: wiibleyde/tally:latest
+    container_name: tally
+    ports:
+      - "9124:5000"
+    volumes:
+      - .:/app
