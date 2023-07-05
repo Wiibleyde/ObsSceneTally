@@ -33,6 +33,13 @@ def setCamInvisible():
     # return response 200
     return {'status': 'OK'}
 
+@app.route('/setAllCamsInvisible', methods=['GET'])
+def setAllCamsInvisible():
+    # print("Call to /setAllCamsInvisible received")
+    camServiceObj.clear()
+    # return response 200
+    return {'status': 'OK'}
+
 if __name__ == '__main__':
     camServiceObj = CamService("cam.json")
     flaskLog = logging.getLogger('werkzeug')
