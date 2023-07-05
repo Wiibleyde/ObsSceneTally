@@ -28,32 +28,48 @@
 </style>
 <script>
     let camId = "{{ camId }}"
-    let apiLink = "/getCamStatus?camId=" + camId
+    let apiLinks = []
+
+    // layer goes from 1 to 3
+    for (let i = 1; i <= 3; i++) {
+        apiLinks.push("/getCamStatus?camId=" + camId + "&layer=" + i)
+    }
 
     function updateCamStatus() {
-        try {
+        let promises = apiLinks.map(apiLink => fetchCamStatus(apiLink));
+
+        Promise.all(promises)
+            .then(results => {
+                if (results.includes(true)) {
+                    document.body.style.backgroundColor = "green";
+                    document.getElementById("camStatus").innerHTML = "Live";
+                } else {
+                    document.body.style.backgroundColor = "red";
+                    document.getElementById("camStatus").innerHTML = "Offline";
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                document.body.style.backgroundColor = "black";
+                document.getElementById("camStatus").innerHTML = "Error";
+            });
+    }
+
+    function fetchCamStatus(apiLink) {
+        return new Promise((resolve, reject) => {
             fetch(apiLink)
                 .then(response => response.json())
                 .then(data => {
-                    if (data.status == true) {
-                        document.body.style.backgroundColor = "green"
-                        document.getElementById("camStatus").innerHTML = "Live"
-                    } else if (data.status == false) {
-                        document.body.style.backgroundColor = "red"
-                        document.getElementById("camStatus").innerHTML = "Offline"
-                    } else {
-                        document.body.style.backgroundColor = "black"
-                        document.getElementById("camStatus").innerHTML = "Error"
-                    }
+                    resolve(data.status);
                 })
-        } catch (error) {
-            console.log(error)
-            document.body.style.backgroundColor = "black"
-            document.getElementById("camStatus").innerHTML = "Error"
-        }
+                .catch(error => {
+                    console.log(error);
+                    reject(false);
+                });
+        });
     }
 
-    setInterval(updateCamStatus, 300)
+    setInterval(updateCamStatus, 500)
 </script>
 
 <body>

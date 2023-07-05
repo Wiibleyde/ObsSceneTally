@@ -12,23 +12,44 @@ class CamService:
             self.load()
 
     def load(self):
-        with open(self.filename) as json_file:
-            self.data = json.load(json_file)
+        try:
+            with open(self.filename) as json_file:
+                self.data = json.load(json_file)
+        except:
+            self.data = {}
+            self.save()
 
     def save(self):
         with open(self.filename, 'w') as outfile:
             json.dump(self.data, outfile)
 
-    def get(self, key):
-        try:
-            return self.data[key]
-        except KeyError:
-            return False
-    
-    def set(self, key, value):
-        self.data[key] = value
-        self.save()
+    def setCamVisibleLayer1(self, camId):
+        self.set(f"{camId}L1", True)
 
+    def hideAllCamLayer1ExceptCam(self, camId):
+        for key in self.data.keys():
+            if key != camId:
+                if key.endswith("L1"):
+                    self.set(key, False)
+
+    def setCamVisibleLayer2(self, camId):
+        self.set(f"{camId}L2", True)
+
+    def hideAllCamLayer2ExceptCam(self, camId):
+        for key in self.data.keys():
+            if key != camId:
+                if key.endswith("L2"):
+                    self.set(key, False)
+
+    def setCamVisibleLayer3(self, camId):
+        self.set(f"{camId}L3", True)
+
+    def hideAllCamLayer3ExceptCam(self, camId):
+        for key in self.data.keys():
+            if key != camId:
+                if key.endswith("L3"):
+                    self.set(key, False)
+        
     def delete(self, key):
         del self.data[key]
         self.save()
@@ -39,6 +60,16 @@ class CamService:
     def clear(self):
         self.data = {}
         self.save()
+
+    def set(self, key, value):
+        self.data[key] = value
+        self.save()
+
+    def get(self, key):
+        if key in self.data:
+            return self.data[key]
+        else:
+            return False
 
     def getKeys(self):
         return self.data.keys()
