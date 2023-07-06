@@ -5,7 +5,8 @@ services:
     build: .
     image: wiibleyde/tally:latest
     container_name: tally
+    restart: always
     ports:
       - "9124:5000"
     volumes:
-      - .:/app
+      - /var/tally/data:/app/data:rw
