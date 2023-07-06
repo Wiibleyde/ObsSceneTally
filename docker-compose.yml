@@ -9,4 +9,4 @@ services:
     ports:
       - "9124:5000"
     volumes:
-      - /var/tally/data:/app/data:rw
+      - /var/tally/data/:/app/data/:rw

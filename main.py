@@ -8,12 +8,12 @@ app = Flask(__name__)
 
 @app.route('/cam/<int:camId>')
 def cam(camId):
-    # print("Call to /cam/" + str(camId) + " received")
+    print("Call to /cam/" + str(camId) + " received")
     return render_template('cam.html', camId=camId)
 
 @app.route('/getCamStatus', methods=['GET'])
 def getCamStatus():
-    # print("Call to /getCamStatus received with camId=" + request.args.get('camId'))
+    print("Call to /getCamStatus received with camId=" + request.args.get('camId'))
     camId = request.args.get('camId')
     layer = request.args.get('layer')
     if layer == "1":
@@ -28,7 +28,7 @@ def getCamStatus():
 
 @app.route('/setCamVisible', methods=['GET'])
 def setCamVisible():
-    # print("Call to /setCamVisible received with camId=" + request.args.get('camId'))
+    print("Call to /setCamVisible received with camId=" + request.args.get('camId'))
     camId = request.args.get('camId')
     layer = request.args.get('layer')
     if layer == "1":
@@ -44,7 +44,7 @@ def setCamVisible():
 
 @app.route('/setCamInvisible', methods=['GET'])
 def setCamInvisible():
-    # print("Call to /setCamInvisible received with camId=" + request.args.get('camId'))
+    print("Call to /setCamInvisible received with camId=" + request.args.get('camId'))
     camId = request.args.get('camId')
     layer = request.args.get('layer')
     if layer == "1":
@@ -57,7 +57,7 @@ def setCamInvisible():
 
 @app.route('/setAllCamsInvisible', methods=['GET'])
 def setAllCamsInvisible():
-    # print("Call to /setAllCamsInvisible received")
+    print("Call to /setAllCamsInvisible received")
     camServiceObj.clear()
     return {'status': 'OK'}
 
