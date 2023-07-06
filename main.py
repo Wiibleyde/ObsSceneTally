@@ -13,7 +13,6 @@ def cam(camId):
 
 @app.route('/getCamStatus', methods=['GET'])
 def getCamStatus():
-    print("Call to /getCamStatus received with camId=" + request.args.get('camId'))
     camId = request.args.get('camId')
     layer = request.args.get('layer')
     if layer == "1":
@@ -28,7 +27,6 @@ def getCamStatus():
 
 @app.route('/setCamVisible', methods=['GET'])
 def setCamVisible():
-    print("Call to /setCamVisible received with camId=" + request.args.get('camId'))
     camId = request.args.get('camId')
     layer = request.args.get('layer')
     if layer == "1":
@@ -44,7 +42,6 @@ def setCamVisible():
 
 @app.route('/setCamInvisible', methods=['GET'])
 def setCamInvisible():
-    print("Call to /setCamInvisible received with camId=" + request.args.get('camId'))
     camId = request.args.get('camId')
     layer = request.args.get('layer')
     if layer == "1":
@@ -57,13 +54,12 @@ def setCamInvisible():
 
 @app.route('/setAllCamsInvisible', methods=['GET'])
 def setAllCamsInvisible():
-    print("Call to /setAllCamsInvisible received")
     camServiceObj.clear()
     return {'status': 'OK'}
 
 if __name__ == '__main__':
     camServiceObj = CamService("cam.json")
     flaskLog = logging.getLogger('werkzeug')
-    flaskLog.disabled = True
+    flaskLog.disabled = False
     flask.cli.show_server_banner = lambda *args: None
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)
