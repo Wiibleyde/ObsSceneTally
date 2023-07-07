@@ -8,5 +8,5 @@ services:
     restart: always
     ports:
       - "9124:5000"
-    volumes:
-      - /var/tally/data/:/app/data/:rw
+    # volumes:
+    #   - /var/tally/data/:/app/data/:rw

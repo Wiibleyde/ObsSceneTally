@@ -58,7 +58,7 @@ def setAllCamsInvisible():
     return {'status': 'OK'}
 
 if __name__ == '__main__':
-    camServiceObj = CamService("cam.json")
+    camServiceObj = CamService()
     flaskLog = logging.getLogger('werkzeug')
     flaskLog.disabled = False
     flask.cli.show_server_banner = lambda *args: None
