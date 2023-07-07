@@ -36,7 +36,7 @@ class CamService:
         return self.data
 
     def clear(self):
-        self.data = {}
+        self.data.clear()
 
     def set(self, key, value):
         self.data[key] = value
