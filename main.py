@@ -6,6 +6,10 @@ from services.camService import CamService
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return "Hello, cette page n'est pas censé être affiché. Si tu la vois, c'est que tu n'as pas suivi les instructions. Si tu ne sais pas comment faire, demande à Wiibleyde."
+
 @app.route('/cam/<int:camId>')
 def cam(camId):
     print("Call to /cam/" + str(camId) + " received")
