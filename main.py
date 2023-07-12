@@ -24,7 +24,6 @@ def getCamStatus():
     else:
         return {'status': 'ERROR'}
 
-
 @app.route('/setCamVisible', methods=['GET'])
 def setCamVisible():
     camId = request.args.get('camId')
