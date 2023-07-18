@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  api:
+  tally:
     build: .
-    container_name: TallyGo
+    container_name: ObsTally
     image: wiibleyde/tally:latest
     restart: always
     ports:
       - 8080:8080
     volumes:
-      - ./tally.json:/root/tally.json:rw
+      - /var/tally/data/:/root/data/

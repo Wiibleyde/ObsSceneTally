@@ -1,7 +1,6 @@
 package tallyManager
 
 import (
-	// json
 	"encoding/json"
 	"io/ioutil"
 	"log"
@@ -9,27 +8,23 @@ import (
 )
 
 func GetLayerInfo(layerId int) int {
-	// open tally.json
-	file, err := os.Open("tally.json")
+	file, err := os.Open("data/tally.json")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
 
-	// read tally.json
 	tallyJSON, err := ioutil.ReadAll(file)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// convert tally.json to tally struct
 	var tally TallyStruct
 	err = json.Unmarshal(tallyJSON, &tally)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// get layer info
 	if layerId == 1 {
 		return tally.Layer1
 	} else if layerId == 2 {
