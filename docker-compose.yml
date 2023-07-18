@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  web:
+  api:
     build: .
+    container_name: TallyGo
     image: wiibleyde/tally:latest
-    container_name: tally
     restart: always
     ports:
-      - "9124:5000"
-    # volumes:
-    #   - /var/tally/data/:/app/data/:rw
+      - 8080:8080
+    volumes:
+      - ./tally.json:/root/tally.json:rw

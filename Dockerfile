@@ -1,10 +1,17 @@
-FROM python:3.12-rc
+FROM golang:1.20.6 as builder
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-
 COPY . .
 
-CMD ["python", "main.py"]
+RUN go build main.go
+
+FROM debian:latest
+
+WORKDIR /root/
+
+COPY --from=builder /app/main .
+
+EXPOSE 8080
+
+CMD ["/root/main"]
