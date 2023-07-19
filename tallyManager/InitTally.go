@@ -18,8 +18,8 @@ type TallyStruct struct {
 }
 
 func InitTally() {
-	if _, err := os.Stat("data/tally.json"); os.IsNotExist(err) {
-		file, err := os.Create("data/tally.json")
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		file, err := os.Create(filename)
 		if err != nil {
 			logger.ErrorLogger.Println("Error creating tally file")
 		}

@@ -8,7 +8,7 @@ import (
 )
 
 func ChangeCam(camId int, layerId int) {
-	file, err := os.Open("data/tally.json")
+	file, err := os.Open(filename)
 	if err != nil {
 		logger.ErrorLogger.Println("Error opening tally file")
 	}
@@ -40,14 +40,14 @@ func ChangeCam(camId int, layerId int) {
 		logger.ErrorLogger.Println("Error marshalling tally")
 	}
 
-	err = ioutil.WriteFile("data/tally.json", tallyJSON, 0644)
+	err = ioutil.WriteFile(filename, tallyJSON, 0644)
 	if err != nil {
 		logger.ErrorLogger.Println("Error writing tally to file")
 	}
 }
 
 func RemoveCamIdOfAllLayer(CamId int, LayerIdNotTouch int) {
-	file, err := os.Open("data/tally.json")
+	file, err := os.Open(filename)
 	if err != nil {
 		logger.ErrorLogger.Println("Error opening tally file")
 	}

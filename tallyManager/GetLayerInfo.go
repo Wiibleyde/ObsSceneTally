@@ -8,7 +8,7 @@ import (
 )
 
 func GetLayerInfo(layerId int) int {
-	file, err := os.Open("data/tally.json")
+	file, err := os.Open(filename)
 	if err != nil {
 		logger.ErrorLogger.Println("Error opening tally file")
 	}
