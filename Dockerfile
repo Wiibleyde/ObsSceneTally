@@ -16,6 +16,9 @@ WORKDIR /root/
 COPY --from=builder /app/main .
 COPY --from=builder /app/templates ./templates
 
+RUN mkdir -p /root/data
+RUN mkdir -p /root/logs
+
 EXPOSE 8080
 
 CMD ["/root/main"]

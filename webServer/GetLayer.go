@@ -4,9 +4,11 @@ import (
 	"net/http"
 	"strconv"
 	"tallyManager"
+	"logger"
 )
 
 func GetLayerHandler(w http.ResponseWriter, r *http.Request) {
+	logger.TrafficLogger.Println("GetLayerHandler called")
 	// get layerId from url
 	layerId := r.URL.Query().Get("layerId")
 

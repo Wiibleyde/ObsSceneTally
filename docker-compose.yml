@@ -10,3 +10,4 @@ services:
       - 8080:8080
     volumes:
       - /var/tally/data/:/root/data/
+      - /var/tally/logs/:/root/logs/

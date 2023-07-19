@@ -1,7 +1,7 @@
 package webServer
 
 import (
-	"fmt"
+	"logger"
 	"net/http"
 	"text/template"
 )
@@ -11,6 +11,7 @@ type HtmlData struct {
 }
 
 func ShowCamHandler(w http.ResponseWriter, r *http.Request) {
+	logger.TrafficLogger.Println("ShowCamHandler called")
 	// get camId and layerId from url
 	camId := r.URL.Query().Get("camId")
 
@@ -23,7 +24,7 @@ func ShowCamHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		// Handle the error (e.g., log it, show an error page, etc.)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		fmt.Println("Error parsing template:", err)
+		logger.ErrorLogger.Println("Error parsing template")
 		return
 	}
 	t.Execute(w, htmlData)
