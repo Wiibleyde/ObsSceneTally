@@ -8,12 +8,13 @@ COPY . .
 RUN CGO_ENABLED=0 go build -o main main.go
 
 # Final stage
-FROM debian:latest
+FROM alpine:latest
 
 WORKDIR /root/
 
 # Copy the built binary from the builder stage to the final stage
 COPY --from=builder /app/main .
+COPY --from=builder /app/templates ./templates
 
 EXPOSE 8080
 

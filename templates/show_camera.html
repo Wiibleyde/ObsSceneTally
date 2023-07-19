@@ -39,13 +39,11 @@
 
             Promise.all(promises)
                 .then(camIds => {
-                    console.log(camIds); // Log the fetched camIds to check the data
-
                     if (camIds.includes(camId)) {
                         let layer = camIds.indexOf(camId) + 1;
                         document.body.style.backgroundColor = "green";
                         document.getElementById("camStatus").innerHTML = "Live on layer " + layer;
-                    } else if(!camIds.includes(camId)) {
+                    } else if(!camIds.includes(camId) && !camIds.includes(undefined)) {
                         document.body.style.backgroundColor = "red";
                         document.getElementById("camStatus").innerHTML = "Offline";
                     } else {
