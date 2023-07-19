@@ -1,5 +1,7 @@
 # ObsSceneTally
 
+![GitHub license](https://img.shields.io/github/license/Wiibleyde/ObsSceneTally) ![GitHub issues](https://img.shields.io/github/issues/Wiibleyde/ObsSceneTally) ![GitHub pull requests](https://img.shields.io/github/issues-pr/Wiibleyde/ObsSceneTally) ![GitHub last commit](https://img.shields.io/github/last-commit/Wiibleyde/ObsSceneTally) ![GitHub repo size](https://img.shields.io/github/repo-size/Wiibleyde/ObsSceneTally) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Wiibleyde/ObsSceneTally) ![GitHub language count](https://img.shields.io/github/languages/count/Wiibleyde/ObsSceneTally) ![GitHub top language](https://img.shields.io/github/languages/top/Wiibleyde/ObsSceneTally)
+
 ## Description
 
 This is a simple script that will show to a camera if it is live or not. It will also show the layer of the scene that is live.
