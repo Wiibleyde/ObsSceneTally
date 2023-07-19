@@ -79,3 +79,9 @@ func RemoveCamIdOfAllLayer(CamId int, LayerIdNotTouch int) {
 		}
 	}
 }
+
+func ResetTally() {
+	ChangeCam(0, 1)
+	ChangeCam(0, 2)
+	ChangeCam(0, 3)
+}

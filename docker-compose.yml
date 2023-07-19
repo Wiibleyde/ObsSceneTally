@@ -7,7 +7,7 @@ services:
     image: wiibleyde/tally:latest
     restart: always
     ports:
-      - 8080:8080
+      - 7070:8080
     volumes:
       - /var/tally/data/:/root/data/
       - /var/tally/logs/:/root/logs/
