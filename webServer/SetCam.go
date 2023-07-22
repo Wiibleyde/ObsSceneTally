@@ -16,5 +16,4 @@ func SetCamHandler(w http.ResponseWriter, r *http.Request) {
 	layerIdInt := ConvertToInt(layerId)
 
 	tallyManager.ChangeCam(camIdInt, layerIdInt)
-	tallyManager.RemoveCamIdOfAllLayer(camIdInt, layerIdInt)
 }

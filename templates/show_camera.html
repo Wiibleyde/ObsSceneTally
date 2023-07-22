@@ -16,7 +16,7 @@
         }
 
         h1 {
-            font-size: 10rem;
+            font-size: 9rem;
             margin: 0;
         }
 
@@ -39,9 +39,14 @@
             Promise.all(promises)
                 .then(camIds => {
                     if (camIds.includes(camId)) {
-                        let layer = camIds.indexOf(camId) + 1;
+                        let layers = camIds.map((camId, index) => {
+                            if (camId == "{{ .CamId }}") {
+                                return index + 1;
+                            }
+                        });
+                        layers = layers.filter(layer => layer !== undefined);
                         document.body.style.backgroundColor = "green";
-                        document.getElementById("camStatus").innerHTML = "Live on layer " + layer;
+                        document.getElementById("camStatus").innerHTML = "Live on layer(s): " + layers.join(", ");
                     } else if(!camIds.includes(camId) && !camIds.includes(undefined)) {
                         document.body.style.backgroundColor = "red";
                         document.getElementById("camStatus").innerHTML = "Offline";
