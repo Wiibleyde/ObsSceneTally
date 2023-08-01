@@ -2,7 +2,7 @@ package tallyManager
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"logger"
 	"os"
 )
@@ -14,7 +14,7 @@ func GetLayersInfo() []int {
 	}
 	defer file.Close()
 
-	tallyJSON, err := ioutil.ReadAll(file)
+	tallyJSON, err := io.ReadAll(file)
 	if err != nil {
 		logger.ErrorLogger.Println("Error reading tally file")
 	}

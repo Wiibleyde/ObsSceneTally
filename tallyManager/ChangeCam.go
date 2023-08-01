@@ -2,6 +2,7 @@ package tallyManager
 
 import (
 	"encoding/json"
+	"io"
 	"io/ioutil"
 	"logger"
 	"os"
@@ -14,7 +15,7 @@ func ChangeCam(camId int, layerId int) {
 	}
 	defer file.Close()
 
-	tallyJSON, err := ioutil.ReadAll(file)
+	tallyJSON, err := io.ReadAll(file)
 	if err != nil {
 		logger.ErrorLogger.Println("Error reading tally file")
 	}
@@ -53,7 +54,7 @@ func RemoveCamIdOfAllLayer(CamId int, LayerIdNotTouch int) {
 	}
 	defer file.Close()
 
-	tallyJSON, err := ioutil.ReadAll(file)
+	tallyJSON, err := io.ReadAll(file)
 	if err != nil {
 		logger.ErrorLogger.Println("Error reading tally file")
 	}
