@@ -19,6 +19,10 @@ func getDate() string {
 }
 
 func InitLogger() {
+	// Create logs/ if not exist
+	if _, err := os.Stat("logs/"); os.IsNotExist(err) {
+		os.Mkdir("logs/", 0777)
+	}
 	file, err := os.OpenFile("logs/logs-"+ getDate() + ".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		log.Fatal(err)

@@ -10,9 +10,11 @@ func InitWebserver() {
 	logger.TrafficLogger.Println("InitWebserver called")
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/cam", ShowCamHandler)
+	http.HandleFunc("/panel", PanelHandler)
 	http.HandleFunc("/api/reset", ResetHandler)
 	http.HandleFunc("/api/setCam", SetCamHandler)
 	http.HandleFunc("/api/getLayer", GetLayerHandler)
+	http.HandleFunc("/api/getLayers", GetLayersHandler)
 }
 
 func ConvertToInt(strToInvert string) int {

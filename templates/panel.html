@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Panel</title>
+    </head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background-color: black;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 9rem;
+            margin: 0;
+        }
+
+        p {
+            font-size: 5rem;
+            margin: 0;
+        }
+    </style>
+    <script>
+        let apiLink = "/api/getLayers"
+
+        function updateCamStatus() {
+            // Fetch layers status and update number of the cam in every layers
+            fetch(apiLink)
+                .then(response => response.text())
+                .then(layers => {
+                    layers = layers.split(',')
+                    let layer1 = layers[0]
+                    let layer2 = layers[1]
+                    let layer3 = layers[2]
+                    if(layer1 == 0) {
+                        document.getElementById("layer1").innerHTML = "Offline"
+                        document.getElementById("layer1text").style = "color:red"
+                    } else if(layer1 == -1) {
+                        document.getElementById("layer1").innerHTML = "Video"
+                        document.getElementById("layer1text").style = "color:blue"
+                    } else {
+                        document.getElementById("layer1").innerHTML = layer1
+                        document.getElementById("layer1text").style = "color:green"
+                    }
+                    if(layer2 == 0) {
+                        document.getElementById("layer2").innerHTML = "Offline"
+                        document.getElementById("layer2text").style = "color:red"
+                    } else if(layer2 == -1) {
+                        document.getElementById("layer2").innerHTML = "Video"
+                        document.getElementById("layer2text").style = "color:blue"
+                    } else {
+                        document.getElementById("layer2").innerHTML = layer2
+                        document.getElementById("layer2text").style = "color:green"
+                    }
+                    if(layer3 == 0) {
+                        document.getElementById("layer3").innerHTML = "Offline"
+                        document.getElementById("layer3text").style = "color:red"
+                    } else if(layer3 == -1) {
+                        document.getElementById("layer3").innerHTML = "Video"
+                        document.getElementById("layer3text").style = "color:blue"
+                    } else {
+                        document.getElementById("layer3").innerHTML = layer3
+                        document.getElementById("layer3text").style = "color:green"
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching camera status:', error);
+                    document.getElementById("layer1").innerHTML = "Error"
+                    document.getElementById("layer1text").style = "color:gray"
+                    document.getElementById("layer2").innerHTML = "Error"
+                    document.getElementById("layer2text").style = "color:gray"
+                    document.getElementById("layer3").innerHTML = "Error"
+                    document.getElementById("layer3text").style = "color:gray"
+                });
+        }
+
+        setInterval(updateCamStatus, 500);
+    </script>
+    <body>
+        <h1>Tally panel</h1>
+        <p id="layer1text">Layer 1 : <span id="layer1"></span></p>
+        <p id="layer2text">Layer 2 : <span id="layer2"></span></p>
+        <p id="layer3text">Layer 3 : <span id="layer3"></span></p>
+    </body>
+</html>

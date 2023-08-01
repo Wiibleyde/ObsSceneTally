@@ -18,6 +18,12 @@ type TallyStruct struct {
 }
 
 func InitTally() {
+	if _, err := os.Stat("data"); os.IsNotExist(err) {
+		err := os.Mkdir("data", 0755)
+		if err != nil {
+			logger.ErrorLogger.Println("Error creating data folder")
+		}
+	}
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
 		file, err := os.Create(filename)
 		if err != nil {
