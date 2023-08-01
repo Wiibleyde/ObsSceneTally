@@ -8,6 +8,8 @@ import (
 
 func InitWebserver() {
 	logger.TrafficLogger.Println("InitWebserver called")
+	http.FileServer(http.Dir("templates"))
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/cam", ShowCamHandler)
 	http.HandleFunc("/panel", PanelHandler)
