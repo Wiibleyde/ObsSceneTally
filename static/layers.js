@@ -16,7 +16,7 @@ fetch(apiLink)
             document.getElementById("layer1").innerHTML = "Video"
             document.getElementById("layer1text").style = "color:blue"
         } else {
-            document.getElementById("layer1").innerHTML = layer1
+            document.getElementById("layer1").innerHTML = `Cam ${layer1}`
             document.getElementById("layer1text").style = "color:green"
         }
         if(layer2 == 0) {
@@ -26,7 +26,7 @@ fetch(apiLink)
             document.getElementById("layer2").innerHTML = "Video"
             document.getElementById("layer2text").style = "color:blue"
         } else {
-            document.getElementById("layer2").innerHTML = layer2
+            document.getElementById("layer2").innerHTML = `Cam ${layer2}`
             document.getElementById("layer2text").style = "color:green"
         }
         if(layer3 == 0) {
@@ -36,7 +36,7 @@ fetch(apiLink)
             document.getElementById("layer3").innerHTML = "Video"
             document.getElementById("layer3text").style = "color:blue"
         } else {
-            document.getElementById("layer3").innerHTML = layer3
+            document.getElementById("layer3").innerHTML = `Cam ${layer3}`
             document.getElementById("layer3text").style = "color:green"
         }
     })
